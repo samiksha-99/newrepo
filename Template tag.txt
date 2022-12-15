@@ -1,0 +1,42 @@
+1.create project ==> syntax : django-admin startproject project_name
+
+2.change dir ==> syntax: cd pro_name
+
+3.create app ==> syntax : python manage.py startapp app_name
+
+3.register app ==> inside settings ==> into the installed apps
+
+4.create Template dir ==> [project_level]
+
+5.create app_name dir==> [into the template dir]   
+>> for every app make separate dir to maintaine html file (with same name as of app)
+
+6.create respective html file for the apps [into the resp. dir_under template]
+
+
+8.configur the path of template(dir)
+>> go to the seetings  
+New_Dir = Path.joinpath(BASE_DIR,'Template')
+
+9.pass the dynamic content to view(it should be in the form of dictionary)
+## if you want to add the date time >> you need to import the date time module 
+   import datetime
+ 
+   to add new key ==>     dict_name[key] = str(d1) 
+
+   inside views==> def show(r):
+                         d1 = datetime.datetime.now()
+                          dict1 = {'key':"value", 'key':"value, 'date':str(d1)}
+                            return render(r,'app_name/app_html_page_name',context=dict_name)
+
+
+inside views==> def show(r):
+                   dict1 = {'key':"value", 'key':"value}
+                    return render(r,'app_name/app_html_page_name',context=dict_name)
+
+and to send this data to html we need to pass 'context=dict_name'
+
+10.Injection of dynamic content inside html page ==> for this we need tamplate tags [we access the 'values' through 'key' {{key}} ] 
+   print the values using html tags <h1>{{key}}</h1> 
+                                    <h2>{{key}}</h2>
+11. python manage.py runserver
